@@ -3,7 +3,7 @@
 <script>
 import wepy from 'wepy'
 import 'wepy-async-function'
-
+import  '@/baseAPI.js'
 export default class extends wepy.app {
   config = {
     pages: [
@@ -11,7 +11,11 @@ export default class extends wepy.app {
       'pages/tabs/cates',
       'pages/tabs/search',
       'pages/tabs/cart',
-      'pages/tabs/me'
+      'pages/tabs/me',
+      // 这是商品详情页面
+      'pages/goods_detail/main',
+      // 这是商品列表的页面
+      'pages/goods_list'
     ],
     // 设置页面的相关属性 例如背景颜色，页面名称等
     window: {

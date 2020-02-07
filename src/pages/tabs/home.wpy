@@ -3,43 +3,81 @@
      <!-- 轮播图区域    -->
      <swiper circular indicator-dots>
        <swiper-item wx:for="{{swiperList}}"  wx:key="index">
-         <image src="{{item.image_src}}">
+         <navigator url="{{item.navigator_url}}" open-type="{{item.open_type}}">
+          <image src="{{item.image_src}}">
+         </navigator>
        </swiper-item>
      </swiper>
+     <!-- 分类区域 -->
+     <view class="cates">
+       <block wx:for="{{cateItems}}" wx:key="index">
+         <navigator url="/pages/tabs/cates" open-type="{{item.open_type}}" wx:if="{{item.navigator_url !== undefined}}" hover-class="none">
+           <image src="{{item.image_src}}">
+         </navigator>
+           <image src="{{item.image_src}}" wx:else>
+         
+       </block>
+     </view>
+     <!-- 楼层区域 -->
+     <view class="floor-container">
+       <view class='floor-item' wx:for="{{floorData}}" wx:key="index">
+         <!-- 楼层的标题 -->
+         <image class="floor-item-title" src="{{item.floor_title.image_src}}" />
+         <!-- 楼层的图片 -->
+         <view class='floor-img-box'> 
+           <image class="floor-img-pic" wx:for="{{item.product_list}}" wx:key="index" src="{{item.image_src}}" style="width:{{item.image_width}}rpx;" @tap ="goGoodsList({{item.navigator_url}})" />
+         </view>
+       </view>
+     </view>
   </view>
 </template>
 <script>
 import wepy from 'wepy'
+// 将这里的业务逻辑单独放置到一个js文件里面，再导入外界的mixin文件，@代表的就是src这一层路径
+// 简化页面的js代码
+// import mix from '../../mixins/tabs/home.js'
+import mix from '@/mixins/tabs/home.js'
 export default class extends wepy.page {
-  data = {
-    //   轮播图数据获取存放数据的空数组
-    swiperList: []
+  // 把导入的mix对象，挂载到mixins数据中就行了
+     mixins = [mix]
   }
-  onLoad() {
-    this.getSwiperData()
-  }
-  // 获取轮播图数据的函数
-  async getSwiperData() {
-    const { data: res } = await wepy.request({
-      url: 'https://www.zhengzhicheng.cn/api/public/v1/home/swiperdata',
-      method: 'GET',
-      data: {}
-    })
-
-    console.log(res)
-    if (res.meta.status !== 200) {
-      //   return console.log('获取数据失败')
-      // 获取数据的信息提示弹框
-      return wepy.showToast({
-        title: '获取数据失败!',
-        // 弹框携带的图标
-        icon: 'success',
-        duration: 1500
-      })
-    }
-    this.swiperList = res.message
-    this.$apply()
+</script>
+<style lang="less">
+swiper{
+  height: 350rpx;
+  navigator,
+  image{
+      height: 100%;
+      width: 750rpx;
   }
 }
-</script>
-<style lang="less"></style>
+.cates{
+  display: flex;
+  justify-content: space-around;
+  margin: 40rpx 0;
+  image{
+    width: 128rpx;
+    height: 140rpx;
+  }
+}
+.floor-container{
+  .floor-item{
+    .floor-item-title{
+      height: 50rpx;
+      width: 640rpx;
+      display: block;
+    }
+    .floor-img-box{
+      .floor-img-pic{
+        float: left;
+        height: 190rpx;
+        margin: 8rpx;
+        margin-top: 0rpx;
+        &:nth-child(1){
+          height: 390rpx;
+        }      
+      }
+    }
+  }
+}
+</style>

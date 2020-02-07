@@ -1,0 +1,12 @@
+<template>
+  <view>
+    商品详情页面
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class extends wepy.page {}
+</script>
+
+<style lang="less"></style>
