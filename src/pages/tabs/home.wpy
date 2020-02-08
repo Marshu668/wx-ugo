@@ -25,7 +25,7 @@
          <image class="floor-item-title" src="{{item.floor_title.image_src}}" />
          <!-- 楼层的图片 -->
          <view class='floor-img-box'> 
-           <image class="floor-img-pic" wx:for="{{item.product_list}}" wx:key="index" src="{{item.image_src}}" style="width:{{item.image_width}}rpx;" @tap ="goGoodsList({{item.navigator_url}})" />
+           <image class="floor-img-pic" wx:for="{{item.product_list}}" wx:key="index" src="{{item.image_src}}" style="width:{{item.image_width}}rpx;" bind:tap ="goGoodsList({{item.navigator_url}})" />
          </view>
        </view>
      </view>
