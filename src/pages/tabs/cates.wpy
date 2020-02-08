@@ -17,13 +17,13 @@
       <block wx:for="{{secondCate}}" wx:key="index">
         <van-row>
           <van-col span="24" style="text-align:center;">
-            <text class="cate_title">/{{ item.cat_name }}/</text>
+            <text class="cate_title" space="ensp">/  {{ item.cat_name }}  /</text>
           </van-col>
         </van-row>
         <!-- 三级分类 -->
         <van-row>
           <block wx:for="{{item.children}}" wx:key="index">
-            <van-col span="8" class="cell" bind:tap="goGoodsList({{item.cat_id}})">
+            <van-col span="8" class="cell" bind:tap="goGoodsList({{item.cat_id}})" >
               <image src="{{item.cat_icon}}" class="thumbImg" />
               <view class="thumbTitle">{{item.cat_name}}</view>
             </van-col>

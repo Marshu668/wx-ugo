@@ -21,6 +21,13 @@ export default class extends wepy.mixin {
       //   console.log(e.detail)
       this.secondCate = this.cateList[e.detail].children
       console.log(this.secondCate)
+    },
+    // 点击跳转到商品列表页面   同时把商品分类的cid传递过去
+    goGoodsList(cid) {
+      console.log(cid)
+      wepy.navigateTo({
+        url: '/pages/goods_list?cid=' + cid
+      })
     }
   }
   //   动态获取屏幕可用的高度

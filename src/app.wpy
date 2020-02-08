@@ -71,9 +71,8 @@ export default class extends wepy.app {
       'van-badge': './assets/vant/badge/index',
       'van-badge-group': './assets/vant/badge-group/index',
       // 布局相关的组件
-      "van-row": "./assets/vant/row/index",
-      "van-col": "./assets/vant/col/index"
-}
+      'van-row': './assets/vant/row/index',
+      'van-col': './assets/vant/col/index'
     }
   }
 
@@ -86,6 +85,37 @@ export default class extends wepy.app {
     this.use('requestfix')
     // 通过这一行代码 可以为异步的API开启   promise功能，这样，异步API调用的结果，返回值就是promise对象
     this.use('promisify')
+
+    // 拦截器
+    this.intercept('request', {
+      // 发出请求时的回调函数
+      config(p) {
+        // 显示loading效果
+        wepy.showLoading({
+          title: '数据加载中...'
+        })
+        // 必须返回OBJECT参数对象，否则无法发送请求到服务端
+        return p
+      },
+
+      // 请求成功后的回调函数
+      success(p) {
+        // 必须返回响应数据对象，否则后续无法对响应数据进行处理
+        return p
+      },
+
+      // 请求失败后的回调函数
+      fail(p) {
+        // 必须返回响应数据对象，否则后续无法对响应数据进行处理
+        return p
+      },
+
+      // 请求完成时的回调函数(请求成功或失败都会被执行)
+      complete(p) {
+        // 隐藏loading效果
+        wepy.hideLoading()
+      }
+    })
   }
 
   onLaunch() {
