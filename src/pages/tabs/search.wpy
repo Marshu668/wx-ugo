@@ -10,11 +10,33 @@
       bind:cancel="onCancel"
     />
     <!-- 搜索的建议列表 -->
-    <van-cell-group>
+    <van-cell-group wx:if="{{isShowHistory === false}}">
       <block wx:for="{{sugguestList}}" wx:key="index">
-        <van-cell title="{{item.goods_name}}" bind:tap="goGoodsList({{item.goods_id}})" />
+        <van-cell
+          title="{{item.goods_name}}"
+          bind:tap="goGoodsList({{item.goods_id}})"
+        />
       </block>
     </van-cell-group>
+    <!-- 历史搜索区域 -->
+    <view wx:else>
+      <view class="history_title">
+        <text>历史搜索</text>
+        <!-- 绑定tap是绑定点击之后触发的事件 -->
+        <van-icon name="delete" bind:tap="clearHistory" />
+      </view>
+      <view class="history_body">
+        <!-- 绑定tap是确保点击每一个标签就可以跳转到商品的详情页面 -->
+        <van-tag
+          size="large"
+          wx:for="{{kwList}}"
+          wx:key="index"
+          class="tag"
+          bind:tap="goGoods({{item}})"
+          >{{ item }}</van-tag
+        >
+      </view>
+    </view>
   </view>
 </template>
 <script>
@@ -24,4 +46,19 @@ export default class extends wepy.page {
   mixins = [mix]
 }
 </script>
-<style lang="less"></style>
+<style lang="less">
+.history_title {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20rpx;
+  text:nth-child(1) {
+    font-size: 26rpx;
+    font-weight: bold;
+  }
+}
+.tag {
+  > view {
+    margin: 15rpx;
+  }
+}
+</style>
