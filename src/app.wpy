@@ -72,7 +72,12 @@ export default class extends wepy.app {
       'van-badge-group': './assets/vant/badge-group/index',
       // 布局相关的组件
       'van-row': './assets/vant/row/index',
-      'van-col': './assets/vant/col/index'
+      'van-col': './assets/vant/col/index',
+      // 全局注册搜索框组件
+      'van-search': './assets/vant/search/index',
+      // 单元格组件
+      'van-cell': './assets/vant/cell/index',
+      'van-cell-group': './assets/vant/cell-group/index'
     }
   }
 
