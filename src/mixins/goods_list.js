@@ -34,8 +34,15 @@ export default class extends wepy.mixin {
     if (res.meta.status !== 200) {
       return wepy.baseToast()
     }
-    this.goodslist = res.message.goods
+    // 实现上拉加载更多的效果
+    this.goodslist = [...this.goodslist, ...res.message.goods]
     this.total = res.message.total
     this.$apply()
+  }
+  //   触底操作
+  onReachBottom() {
+    console.log('fffff')
+    this.pagenum++
+    this.getGoodsList()
   }
 }
