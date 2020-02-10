@@ -1,17 +1,33 @@
 <template>
   <view>
-      商品列表
+    <!-- 商品列表区域 -->
+    <block wx:for="{{goodslist}}" wx:key="index">
+      <van-card
+        num="{{item.goods_number}}"
+        price="{{item.goods_price}}"
+        title="{{item.goods_name}}"
+        thumb="{{ item.goods_small_logo }}"
+      />
+      <!-- 分割线 -->
+      <view class="sep_line"></view>
+    </block>
   </view>
 </template>
 
 <script>
 import wepy from 'wepy'
+import mix from '@/mixins/goods_list.js'
 export default class extends wepy.page {
-    onLoad(options){
-        console.log(options);
-        
-    }
+  // config 节点只能写到页面的js中不能抽离到mixin中
+  config = {
+    navigationBarTitleText: '商品列表'
+  }
+  mixins = [mix]
 }
 </script>
 
-<style lang="less"></style>
+<style lang="less">
+.sep_line {
+  border: 1rpx solid #eee;
+}
+</style>
