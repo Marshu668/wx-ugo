@@ -80,10 +80,19 @@ export default class extends wepy.app {
       'van-cell-group': './assets/vant/cell-group/index',
       // 图标
       'van-icon': './assets/vant/icon/index',
-      // tag标签
+      // tag标签b
       'van-tag': './assets/vant/tag/index',
       // 商品卡片组件
-      'van-card': './assets/vant/card/index'
+      'van-card': './assets/vant/card/index',
+      // tab栏
+      'van-tab': './assets/vant/tab/index',
+      'van-tabs': './assets/vant/tabs/index',
+      // 把html代码转换为xhml代码的插件
+      wxparse: './assets/wxparse/wxparse',
+      // 商品导航区域
+      'van-goods-action': './assets/vant/goods-action/index',
+      'van-goods-action-icon': './assets/vant/goods-action-icon/index',
+      'van-goods-action-button': './assets/vant/goods-action-button/index'
     }
   }
 
